@@ -16,27 +16,36 @@ Example 2:
 Input: strs = ["dog","racecar","car"]
 Output: ""
 Explanation: There is no common prefix among the input strings.
-
-
 '''
-from typing import List
-def longest_common_prefix(strings):
-    prefix_length = dict()
-    for i in range(0,len(strings)):
-        for x in range(i, len(strings)):
-            print('i: ' + str(i) + ' x: ' + str(x))
-            if x+1 < len(strings):
-                string_1_letters = [char for char in strings[i]] 
-                string_2_letters = [char for char in strings[x+1]]
-                
-                #compare each letter 
-     
-    return None
 
-string1 = ['recipe', 'resume', 'rest']
-string2 = ['red', 'green', 'blue']
-print(longest_common_prefix(string1))
-#print(longest_common_prefix(string2))
+def longest_common_prefix(strings):
+
+    first_string = strings[0]
+    first_string_letters = [char for char in first_string]
+    common_prefix_length = len(first_string)
+    
+    for string in strings[1:]:
+        
+        match_count = 0
+        string_letters = [char for char in string]
+        
+        for i in range(0,len(first_string_letters)):
+            if first_string_letters[i] == string_letters[i]:
+                match_count = match_count + 1
+            else:
+                break
+
+        if match_count < common_prefix_length:
+            common_prefix_length = match_count
+
+    return ''.join(first_string_letters[0:common_prefix_length])
+
+#tests
+test1 = ['recipe', 'resume', 'rest']
+print(longest_common_prefix(test1))
+
+test2 = ['red', 'green', 'blue']
+print(longest_common_prefix(test2))
 
 
 
