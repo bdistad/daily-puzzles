@@ -21,3 +21,5 @@ def max_profit(prices: List[int]) -> int:
         return max_profit
     else:
         return 0
+
+test = ["test", "one"]
